@@ -40,13 +40,13 @@
       <p class="navbar-text"></p>
       <ul class="nav navbar-nav">
         <li class="active">
-          <a href="/">设备列表
+          <a href="/">Device List
             <span class="sr-only"></span>
           </a>
         </li>
         <li>
           <a href="/videos">
-            <i class="fa fa-film"></i> 视频列表</a>
+            <i class="fa fa-film"></i> Video List</a>
         </li>
       </ul>
     </div>
@@ -55,23 +55,23 @@
     <div class="row">
       <div class="col-md-12" v-if="errmsg">
         <p class="color-red">{{errmsg}}
-          <button class="btn btn-warning btn-xs" @click="loadWatches">点击重连</button>
+          <button class="btn btn-warning btn-xs" @click="loadWatches">retry</button>
         </p>
       </div>
     </div>
     <form class="form-inline hidden" v-on:submit.prevent>
       <div class="form-group">
-        <strong>批量操作</strong>
+        <strong>Action</strong>
         <button @click.prevent="batchUnlock" class="btn btn-sm btn-default">
-          <i class="fa fa-unlock"></i> 解锁</button>
+          <i class="fa fa-unlock"></i> Unlock</button>
         <button @click.prevent="batchLock" class="btn btn-sm btn-default">
-          <i class="fa fa-lock"></i> 锁屏</button>
+          <i class="fa fa-lock"></i> Lock</button>
         <button @click.prevent="batchIdentify('red')" class="btn btn-sm btn-default">
-          <i class="fa fa-location-arrow"></i> 红色</button>
+          <i class="fa fa-location-arrow"></i> Red</button>
         <button @click.prevent="batchIdentify('black')" class="btn btn-sm btn-default">
-          <i class="fa fa-location-arrow"></i> 黑色</button>
+          <i class="fa fa-location-arrow"></i> Black</button>
         <!-- <button @click.prevent="batchPower" class="btn btn-sm btn-danger"><i class="fa fa-power-off"></i> 关机</button> -->
-        <button @click.prevent="setProperty" class="btn btn-sm btn-info">资产设置</button>
+        <button @click.prevent="setProperty" class="btn btn-sm btn-info">Set Property</button>
       </div>
     </form>
     <form class="form-inline" v-on:submit.prevent>
@@ -79,23 +79,23 @@
         <div class="input-group input-group-sm">
           <!-- <div class="input-group-addon">Search</div> -->
           <!-- autofocus is not working, wired -->
-          <div class="input-group-addon" title="在线设备">
+          <div class="input-group-addon" title="online">
             <i class="fa fa-meh-o"></i>
             <strong v-text="onlineCount"></strong>
           </div>
-          <div class="input-group-addon" title="已标记设备">
+          <div class="input-group-addon" title="marked">
             <i class="fa fa-smile-o"></i>
             <strong v-text="count(true, true, null)"></strong>
           </div>
-          <div class="input-group-addon" title="未标记设备">
+          <div class="input-group-addon" title="unmarked">
             <i class="fa fa-frown-o"></i>
             <strong v-text="count(true, false, null)"></strong>
           </div>
-          <div class="input-group-addon" title="离线设备">
+          <div class="input-group-addon" title="offline">
             <i class="fa fa-snowflake-o"></i>
             <strong v-text="count(false, null, null)"></strong>
           </div>
-          <input type="text" v-model="searchText" placeholder="搜索" class="form-control" v-focus>
+          <input type="text" v-model="searchText" placeholder="Search" class="form-control" v-focus>
           <div class="input-group-addon">
             <i class="fa fa-search"></i>
           </div>

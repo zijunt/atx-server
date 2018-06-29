@@ -67,7 +67,7 @@
           </button>
         </form>
         <p class="navbar-text">
-          <a href="javascript:window.close()">标签页关闭</a>，设备自动释放</p>
+          <a href="javascript:window.close()">Close</a>，release device</p>
       </div>
     </nav>
     <div id="upper">
@@ -117,11 +117,11 @@
 
               <!-- Tab panes -->
               <div class="tab-content" ref="tab_content" @mousewheel="tabScroll">
-                <tab-item v-on:additem="addTabItem" :active="navtabs.active" tabid="home" name="常用">
+                <tab-item v-on:additem="addTabItem" :active="navtabs.active" tabid="home" name="home">
                   <button @click="fixRotation" class="btn btn-default btn-sm">
-                    <span class="glyphicon glyphicon-repeat"></span> 修复旋转</button>
+                    <span class="glyphicon glyphicon-repeat"></span> fix rotation</button>
                   <button @click="fixMinicap" class="btn btn-default btn-sm" disabled=true>
-                    <span class="fa fa-legal"></span> 修复minicap</button>
+                    <span class="fa fa-legal"></span> fix minicap</button>
                   <div style="padding-top: 10px" v-text="fixConsole"></div>
                   <p>
                     安装
@@ -130,7 +130,7 @@
 
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <i class="fa fa-font"></i> 快捷输入(开发中)</div>
+                      <i class="fa fa-font"></i> 快捷输入(TODO)</div>
                     <div class="panel-body">
                       <textarea class="form-control" v-model="inputText"></textarea>
                       <p class="description">
@@ -141,59 +141,59 @@
 
                   <div class="panel panel-default">
                     <div class="panel-heading">
-                      <i class="fa fa-android"></i> 软件安装</div>
+                      <i class="fa fa-android"></i> install APK</div>
                     <div class="panel-body">
                       <div>
                         <div class="input-group">
                           <span class="input-group-addon" id="sizing-addon2">
                             <i class="fa fa-globe"></i>
                           </span>
-                          <input type="text" class="form-control" v-model="browserURL" placeholder="输入安装包地址 http://.." @keyup.enter="openBrowser(browserURL)">
+                          <input type="text" class="form-control" v-model="browserURL" placeholder="apk URL http://.." @keyup.enter="openBrowser(browserURL)">
                           <span class="input-group-btn">
                             <button type="button" class="btn btn-default" @click='openBrowser(browserURL)'>下载</button>
                           </span>
                         </div>
-                        <p class="description">打开浏览器下载，下载完成后需手动安装</p>
+                        <p class="description">Manually install from browser</p>
                       </div>
 
                     </div>
                   </div>
 
                   <div class="panel panel-default">
-                    <div class="panel-heading">截图 &amp; 录制</div>
+                    <div class="panel-heading">screenshot &amp; recording</div>
                     <div class="panel-body">
                       <button @click="saveScreenshot()" class="btn btn-sm btn-default">
-                        <i class="fa fa-image"></i> 截图</button>
+                        <i class="fa fa-image"></i> screenshot</button>
                       <button v-if="!videoReceiver" type="button" class="btn btn-sm btn-default" @click="startVideoRecord">
-                        高速录制
+                        Hi speed recording
                         <i class="fa fa-circle color-red"></i>
                       </button>
                       <button v-if="!videoReceiver" type="button" class="btn btn-sm btn-default" @click="startLowQualityScreenRecord">
-                        低速录制
+                        low speed recording
                         <i class="fa fa-circle color-red"></i>
                       </button>
                       <!-- <button v-if="!videoReceiver" -->
                       <button v-if="videoReceiver" type="button" class="btn btn-sm btn-default" @click="stopVideoRecord">
-                        停止录制
+                        stop
                         <i class="fa fa-stop color-blue"></i>
                       </button>
                       <p class="description">高速录制时需要保持屏幕开启，每秒仅采集6张图片, 播放时约2倍速度快放。低速录制每一秒采集一张图片</p>
                       <p>
                         <a target="_blank" href="/videos">
                           <i class="fa fa-external-link"></i>
-                          查看所有录制</a>
+                          view all</a>
                       </p>
                       <div>
                         <hr>
                         <div>
                           <button @click="saveShortVideo" class="btn btn-sm btn-default">
-                            <i class="fa fa-video-camera"></i> 保存最近~10s视频 (Beta)</button>
+                            <i class="fa fa-video-camera"></i> save latest 10 s (Beta)</button>
                         </div>
                         <div v-show="videoUrl" class="text-center">
                           <hr>
                           <div class="input-group">
                             <span class="input-group-addon" id="sizing-addon2">
-                              视频地址
+                              video address
                             </span>
                             <input type="text" v-model="videoUrl" class="form-control" disabled>
                             <span class="input-group-btn">
@@ -204,7 +204,7 @@
                           </div>
                           <br>
                           <video :src="videoUrl" controls=controls style="max-height: 400px; border: 1px solid gray">
-                            您的浏览器不支持 video 标签
+                            browser not support video tag
                           </video>
                         </div>
                       </div>
@@ -214,7 +214,7 @@
                 </tab-item>
 
                 <tab-item v-on:additem="addTabItem" :active="navtabs.active" name="Logcat(TODO)">
-                  <p>最大保存行数:
+                  <p>max lines:
                     <input type="number" v-model.number="logcat.maxKeep">
                   </p>
                   <div class="input-group input-group-sm" style="width: 400px">
@@ -270,7 +270,7 @@
                   <form action="/upload/sdcard/tmp/" method="post" enctype="multipart/form-data" class="dropzone" ref="upload">
                   </form>
                   <div class="form-group">
-                    <label>上传到 (还在开发中) </label>
+                    <label>upload (还在开发中) </label>
                     <input type="text" placeholder="上传路径" class="form-control">
                     <p class="help-block">上传路径为空，会根据上传的文件名自动分析要上传的路径</p>
                   </div>
@@ -295,7 +295,7 @@
                   remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
                   Lorem Ipsum passage..
                 </tab-item>
-                <tab-item v-on:additem="addTabItem" :active="navtabs.active" tabid="terminal" name="终端(TODO)">
+                <tab-item v-on:additem="addTabItem" :active="navtabs.active" tabid="terminal" name="terminal(TODO)">
                   TODO
                 </tab-item>
                 <tab-item v-on:additem="addTabItem" :active="navtabs.active" tabid="aboutus" name="关于我们">
